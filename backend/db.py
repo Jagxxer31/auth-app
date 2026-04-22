@@ -1,3 +1,5 @@
+from dotenv import load_dotenv
+load_dotenv()
 import os
 import mysql.connector
 from pymongo import MongoClient
@@ -15,4 +17,4 @@ def get_mysql():
 mongo_client = MongoClient(os.getenv("MONGO_URI"))
 mongo_db = mongo_client["guvi_auth"]
 
-redis_client = redis.Redis.from_url(os.getenv("REDIS_URL"), decode_responses=True)
+redis_client = redis.Redis.from_url(os.getenv("REDIS_URL", "redis://127.0.0.1:6379"), decode_responses=True)

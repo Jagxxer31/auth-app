@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
 import datetime
 import os
-from db import get_mysql, redis_client
+from backend.db import get_mysql, redis_client
 
 def register():
     data = request.get_json()

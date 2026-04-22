@@ -3,9 +3,9 @@ load_dotenv()
 
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
-from db import get_mysql, mongo_db, redis_client
-import auth
-import profile
+from backend.db import get_mysql, mongo_db, redis_client
+from backend import auth
+from backend import profile
 
 app = Flask(__name__, static_folder="../", static_url_path="")
 CORS(app)

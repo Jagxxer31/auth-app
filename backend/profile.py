@@ -1,7 +1,7 @@
 from flask import request, jsonify
 import jwt
 import os
-from db import get_mysql, mongo_db, redis_client
+from backend.db import get_mysql, mongo_db, redis_client
 
 def _verify_token():
     token = request.headers.get("Authorization")
@@ -41,8 +41,10 @@ def get_profile():
     else:
         profile = {}
 
-    return jsonify({**user_data, "profile": profile})
+    if not user_data:
+        return jsonify({"error": "User not found"}), 404
 
+    return jsonify({**user_data, "profile": profile})
 
 def update_profile():
     user = _verify_token()
