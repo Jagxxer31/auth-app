@@ -167,7 +167,7 @@ app.put("/api/profile", authenticate, async (req, res) => {
         const updated = await Profile.findOneAndUpdate(
             { userId: req.user.id },
             { dob, contact, address },
-            { nreturnDocument: "after", upsert: true }
+            { returnDocument: "after", upsert: true }
         );
 
         res.json({ success: true, profile: updated });

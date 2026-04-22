@@ -1,5 +1,4 @@
 $(".field").on("keydown", function (e) {
-
     if (e.key === "Enter") {
         e.preventDefault();
 
@@ -8,8 +7,7 @@ $(".field").on("keydown", function (e) {
 
         if (index < fields.length - 1) {
             fields.eq(index + 1).focus();
-        } 
-        else {
+        } else {
             $("#loginBtn").click();
         }
     }
@@ -22,7 +20,7 @@ $("#loginBtn").click(function (e) {
     const password = $("#password").val();
 
     $.ajax({
-        url: "http://localhost:5000/api/login",
+        url: "/api/login",
         method: "POST",
         contentType: "application/json",
         data: JSON.stringify({ email, password }),
@@ -31,7 +29,7 @@ $("#loginBtn").click(function (e) {
             window.location.href = "profile.html";
         },
         error: function (err) {
-            $("#message").text(err.responseJSON.error);
+            $("#message").text(err.responseJSON?.error || "Server error");
         }
     });
 

@@ -28,7 +28,7 @@ $(document).ready(function () {
         }
 
         $.ajax({
-            url: "http://localhost:5000/api/register",
+            url: "/api/register",
             method: "POST",
             contentType: "application/json",
             data: JSON.stringify({ name, email, password }),

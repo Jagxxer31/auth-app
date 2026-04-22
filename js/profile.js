@@ -9,7 +9,7 @@ $(document).ready(function () {
 
     function loadProfile() {
         $.ajax({
-            url: "http://localhost:5000/api/profile",
+            url: "/api/profile",
             method: "GET",
             headers: {
                 Authorization: "Bearer " + token
@@ -25,8 +25,6 @@ $(document).ready(function () {
                 $("#address").val(res.profile?.address || "");
             },
             error: function (xhr) {
-                console.log("Profile error:", xhr.responseText);
-
                 localStorage.removeItem("token");
                 window.location.href = "login.html";
             }
@@ -36,7 +34,7 @@ $(document).ready(function () {
     $("#save").click(function () {
 
         $.ajax({
-            url: "http://localhost:5000/api/profile",
+            url: "/api/profile",
             method: "PUT",
             contentType: "application/json",
             headers: {
@@ -55,7 +53,7 @@ $(document).ready(function () {
                 $("#message").text(xhr.responseJSON?.error || "Update failed");
             }
         });
-        
+
     });
 
     $("#logoutBtn").click(function () {
@@ -64,5 +62,4 @@ $(document).ready(function () {
     });
 
     loadProfile();
-
 });
